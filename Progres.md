@@ -8,7 +8,7 @@
 - [x] Hapus obat  
 - [x] Styling UI simple
 
-** Progres 11 Desember **
+**Progres 11 Desember**
 - [x] Pencarian data obat (berdasarkan nama obat) - Fadhil
 
 ## ⏳ Belum Selesai
