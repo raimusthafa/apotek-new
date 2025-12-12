@@ -1,8 +1,8 @@
 package service;
 
-import model.Obat;
 import database.ObatDatabase;
 import java.util.ArrayList;
+import model.Obat;
 
 public class ObatService {
     private ObatDatabase database;
@@ -45,6 +45,28 @@ public class ObatService {
         } else {
             System.out.println("\n=== OBAT DITEMUKAN ===");
             obat.tampilkanInfo();
+        }
+    }
+
+    // Cari obat berdasarkan nama (partial, case-insensitive)
+    public void cariObatByNama(String nama) {
+        if (nama == null || nama.trim().isEmpty()) {
+            System.out.println("Nama pencarian tidak boleh kosong.");
+            return;
+        }
+
+        java.util.ArrayList<Obat> hasil = database.cariObatByNama(nama);
+
+        if (hasil.isEmpty()) {
+            System.out.println("Tidak ditemukan obat dengan nama yang mengandung: " + nama);
+        } else {
+            System.out.println("\n=== HASIL PENCARIAN OBAT (Nama) ===");
+            System.out.println("--------------------------------------------------");
+            for (int i = 0; i < hasil.size(); i++) {
+                System.out.println("\nObat ke-" + (i + 1));
+                hasil.get(i).tampilkanInfo();
+                System.out.println("--------------------------------------------------");
+            }
         }
     }
 

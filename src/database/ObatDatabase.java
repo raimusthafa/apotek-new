@@ -1,7 +1,7 @@
 package database;
 
-import model.Obat;
 import java.util.ArrayList;
+import model.Obat;
 
 public class ObatDatabase {
     private ArrayList<Obat> daftarObat;
@@ -39,5 +39,20 @@ public class ObatDatabase {
             }
         }
         return false;
+    }
+
+    // Cari obat berdasarkan nama (partial, case-insensitive)
+    public ArrayList<Obat> cariObatByNama(String nama) {
+        ArrayList<Obat> hasil = new ArrayList<>();
+        if (nama == null) {
+            return hasil;
+        }
+        String namaLower = nama.toLowerCase().trim();
+        for (Obat obat : daftarObat) {
+            if (obat.getNama() != null && obat.getNama().toLowerCase().contains(namaLower)) {
+                hasil.add(obat);
+            }
+        }
+        return hasil;
     }
 }

@@ -6,7 +6,7 @@ Aplikasi CLI sederhana untuk mengelola data obat di apotek.
 
 1. **Tampilkan Semua Obat** - Melihat daftar semua obat
 2. **Tambah Obat Baru** - Menambahkan obat baru ke database
-3. **Cari Obat** - Mencari obat berdasarkan kode
+3. **Cari Obat (Kode/Nama)** - Mencari obat berdasarkan kode atau nama (mendukung pencarian sebagian nama)
 4. **Update Obat** - Mengupdate informasi obat
 5. **Hapus Obat** - Menghapus obat dari database
 
@@ -82,7 +82,7 @@ Ini adalah versi MINIMAL untuk pembelajaran. Anda bisa improve dengan:
 1. **Validasi Input** - Tambahkan validasi untuk input user
 2. **Exception Handling** - Tambahkan try-catch untuk error handling
 3. **Sorting** - Tambahkan fitur sorting berdasarkan nama/harga
-4. **Searching** - Tambahkan pencarian berdasarkan nama (bukan hanya kode)
+4. **Searching** - Pencarian berdasarkan nama sudah didukung (partial, case-insensitive)
 5. **File Persistence** - Simpan data ke file agar tidak hilang saat program ditutup
 6. **Laporan** - Tambahkan fitur laporan stok, dll
 7. **Transaksi** - Tambahkan fitur transaksi penjualan

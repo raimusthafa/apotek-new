@@ -1,7 +1,7 @@
 package ui;
 
-import service.ObatService;
 import java.util.Scanner;
+import service.ObatService;
 
 public class MenuUtama {
     private ObatService obatService;
@@ -39,7 +39,28 @@ public class MenuUtama {
                     tambahObatBaru();
                     break;
                 case 3:
-                    cariObat();
+                    // Gabungkan opsi pencarian: tanya metode (1=Nama, 2=Kode)
+                    System.out.println("\n=== PENCARIAN OBAT ===");
+                    System.out.println("1. Berdasarkan Nama");
+                    System.out.println("2. Berdasarkan Kode");
+                    System.out.print("Pilih metode (1-2): ");
+                    int metode = -1;
+                    try {
+                        metode = scanner.nextInt();
+                    } catch (java.util.InputMismatchException e) {
+                        System.out.println("Input tidak valid.");
+                        scanner.nextLine();
+                        break;
+                    }
+                    scanner.nextLine(); // buang newline
+
+                    if (metode == 1) {
+                        cariObatByNama();
+                    } else if (metode == 2) {
+                        cariObat();
+                    } else {
+                        System.out.println("Pilihan metode tidak valid.");
+                    }
                     break;
                 case 4:
                     updateObat();
@@ -80,6 +101,19 @@ public class MenuUtama {
         String kode = scanner.nextLine();
 
         obatService.cariObat(kode);
+    }
+
+    private void cariObatByNama() {
+        System.out.println("\n=== CARI OBAT BERDASARKAN NAMA ===");
+        System.out.print("Masukkan nama atau bagian nama obat: ");
+        String nama = scanner.nextLine().trim();
+
+        if (nama.isEmpty()) {
+            System.out.println("Input kosong. Silakan masukkan nama obat untuk mencari.");
+            return;
+        }
+
+        obatService.cariObatByNama(nama);
     }
 
     private void updateObat() {
