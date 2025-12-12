@@ -10,7 +10,7 @@
 
 ## ⏳ Belum Selesai
 - [ ] Pemesanan obat (tampilan stok, tanggal kadaluarsa, dan total harga)  
-- [ ] Pencarian data obat (berdasarkan nama obat)  
+- [x] Pencarian data obat (berdasarkan nama obat)  
 - [ ] Tampilkan hasil berdasarkan harga atau tanggal kadaluarsa  
 - [ ] Informasi kategori untuk obat  
 - [ ] Styling tampilan UI  
