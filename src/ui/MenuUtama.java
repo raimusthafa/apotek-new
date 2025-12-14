@@ -1,11 +1,14 @@
 package ui;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import service.ObatService;
 
 public class MenuUtama {
     private ObatService obatService;
     private Scanner scanner;
+    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public MenuUtama(ObatService obatService) {
         this.obatService = obatService;
@@ -15,7 +18,7 @@ public class MenuUtama {
     public void tampilkanMenu() {
         int pilihan = 0;
 
-        while (pilihan != 6) {
+        while (pilihan != 7) {
             System.out.println("\n========================================");
             System.out.println("   SISTEM MANAJEMEN APOTEK SEDERHANA");
             System.out.println("========================================");
@@ -24,9 +27,10 @@ public class MenuUtama {
             System.out.println("3. Cari Obat");
             System.out.println("4. Update Obat");
             System.out.println("5. Hapus Obat");
-            System.out.println("6. Keluar");
+            System.out.println("6. Pesan Obat");
+            System.out.println("7. Keluar");
             System.out.println("========================================");
-            System.out.print("Pilih menu (1-6): ");
+            System.out.print("Pilih menu (1-7): ");
 
             pilihan = scanner.nextInt();
             scanner.nextLine(); // Buang newline
@@ -69,6 +73,9 @@ public class MenuUtama {
                     hapusObat();
                     break;
                 case 6:
+                    pesanObat();
+                    break;
+                case 7:
                     System.out.println("Terima kasih! Program selesai.");
                     break;
                 default:
@@ -90,9 +97,16 @@ public class MenuUtama {
 
         System.out.print("Harga: ");
         double harga = scanner.nextDouble();
+
+        System.out.print("Tanggal Kadaluwarsa: ");
+        String tanggal = scanner.nextLine().trim();
+        LocalDate tanggalKadaluwarsa = LocalDate.parse(tanggal, dateFormatter);
+
+        System.out.print("Kategori: ");
+        String kategori = scanner.nextLine();
         scanner.nextLine(); // Buang newline
 
-        obatService.tambahObat(kode, nama, stok, harga);
+        obatService.tambahObat(kode, nama, stok, harga, tanggalKadaluwarsa, kategori);
     }
 
     private void cariObat() {
@@ -129,9 +143,17 @@ public class MenuUtama {
 
         System.out.print("Harga Baru: ");
         double harga = scanner.nextDouble();
+
+        System.out.print("Tanggal Kadaluwarsa: ");
+        String tanggal = scanner.nextLine().trim();
+        LocalDate tanggalKadaluwarsa = LocalDate.parse(tanggal, dateFormatter);
+
+        System.out.print("Kategori: ");
+        String kategori = scanner.nextLine();
+
         scanner.nextLine(); // Buang newline
 
-        obatService.updateObat(kode, nama, stok, harga);
+        obatService.updateObat(kode, nama, stok, harga, tanggalKadaluwarsa, kategori);
     }
 
     private void hapusObat() {
@@ -140,5 +162,17 @@ public class MenuUtama {
         String kode = scanner.nextLine();
 
         obatService.hapusObat(kode);
+    }
+
+    private void pesanObat() {
+        System.out.println("\n=== PESAN OBAT ===");
+        System.out.print("Masukkan kode obat: ");
+        String kode = scanner.nextLine();
+
+        System.out.print("Masukkan jumlah: ");
+        int jumlah = scanner.nextInt();
+        scanner.nextLine(); // Buang newline
+
+        obatService.pesanObat(kode, jumlah);
     }
 }
